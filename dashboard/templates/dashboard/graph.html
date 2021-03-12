@@ -17,13 +17,42 @@
 
     <!-- Latest compiled and minified JavaScript -->
 
+    <style>
+        .jumbotron {
+            margin-bottom: 0;
+            padding-bottom: 1%;
+            padding-top: 1%;
+            color: white;
+            background-position: right;
+            background-repeat: no-repeat;
+            background-image: url("../../static/img/England_Greater_Manchester.svg");
+            background-size: cover;
+        }
+
+        .pagination {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+
+        .data_sources{
+            border-style: solid;
+            border-width: 0.5px;
+            border: black;
+        }
+    </style>
 </head>
 <body>
-{# put in a navbar#}
 <div class="container">
-
+    <div class="jumbotron text-center jumbotron-fluid">
+        <h1>GM Dementia Dashboard</h1>
+        <p class="lead">Data & insights about dementia care in Greater Manchester</p>
+    </div>
+</div>
+{# put in a navbar#}
+<div class="container justify-content-center paginated">
     <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
+        <ul class="pagination justify-content-center pagination-lg">
             <li class="page-item"><a class="page-link" href="/dashboard/background">Background</a></li>
             <li class="page-item"><a class="page-link" href="/dashboard/technologies">Technologies</a></li>
             <li class="page-item"><a class="page-link" href="/dashboard/diagnosis">Diagnosis</a></li>
@@ -33,44 +62,34 @@
             <li class="page-item"><a class="page-link" href="/dashboard/dying">Death and Dying</a></li>
             <li class="page-item"><a class="page-link" href="/dashboard/environment">Environment</a></li>
             <li class="page-item"><a class="page-link" href="/dashboard/historical">Historical data</a></li>
-
         </ul>
     </nav>
 
     {#Produce a dynamic graph with attribution details#}
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            {% for graph in graphs %}
-                {% if forloop.first %}
-                    <div class="carousel-item active">
-                {% else %}
-                    <div class="carousel-item">
-                {% endif %}
-            <div class="graph_title"><h2>{{ graph.title }}</h2></div>
-            <div class="graph_caption"><p>{{ graph.caption }}</p></div>
-            <div class="graph_pic">{{ graph.bokeh_html|safe }}</div>
-            <div class="graph_updated"><p>Data last known update: {{ graph.updated }}</p></div>
-            <div class="graph_source"><p>Data source: {{ graph.source }}</p></div>
-            <div class="graph_source_url"><p>Data source url: <a
-                    href="{{ graph.source_url }}">{{ graph.source_url }}</a></p></div>
-            <div class="download_data_link"><p>Download data used to generate this plot: <a
-                    href="{{ graph.download_data_link }}">{{ graph.download_data_link }}</a></p></div>
 
+    {% for graph in graphs %}
+        <div class="graph_title">
+            <h1 class="display-1 text-center">{{ graph.title }}</h1>
+        </div>
 
-            </div> < <!-- closes carousel item-->
+        <figure class="figure d-block">{{ graph.bokeh_html|safe }}
+            <figcaption class="figure-caption text-left">
+                <h4 class="lead">{{ graph.caption }}
+            </figcaption>
+        </figure>
 
-            {% endfor %}
-            </div>
-        </div>    <!-- closes carousel_inner -->
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div> <!-- closes carousel -->
+        <div class="data_sources">
+            <ul class="list-unstyled">
+                <li>Data last known update: {{ graph.updated }}</li>
+                <li>Data source: {{ graph.source }}</li>
+                <li>Data source url: <a
+                        href="{{ graph.source_url }}">{{ graph.source_url }}</a></li>
+                <li>Download data used to generate this plot: <a
+                        href="{{ graph.download_data_link }}">{{ graph.download_data_link }}</a></li>
+            </ul>
+        </div>
+    {% endfor %}
+
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

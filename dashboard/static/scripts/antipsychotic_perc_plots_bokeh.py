@@ -1,4 +1,4 @@
-import bokeh.palettes
+from bokeh.palettes import Inferno
 import pandas as pd
 from bokeh.io import output_notebook, output_file
 from bokeh.models import ColumnDataSource, CDSView, GroupFilter
@@ -6,7 +6,6 @@ from bokeh.plotting import figure, show
 from bokeh.transform import dodge
 from pprint import pprint
 from GMsourcelist import *
-from bokehutils import facet
 
 apdata = pd.read_csv("https://files.digital.nhs.uk/D4/9D8525/dem-diag-anti-psy-Jan-2021-csv.zip")
 apdata2 = pd.read_csv('https://files.digital.nhs.uk/0A/739E11/dem-diag-anti-psy-Mar-2020.zip')
@@ -55,7 +54,7 @@ apdata.to_csv("./antipsychotic_data_gm_percentage.csv",
 output_file("./test.html", title="")
 ccglist = list(set(apdata.CCG))
 datelist = list(set(apdata.DATE))
-colorlist = bokeh.palettes.Spectral10
+colorlist = Inferno.get(10)
 
 fig = figure(  # text_align="center",
 

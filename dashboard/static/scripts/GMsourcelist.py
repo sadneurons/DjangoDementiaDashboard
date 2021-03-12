@@ -12,6 +12,18 @@ org_codes = {'salford': '01G',
              'middleton': '01D',
              'stockport': '01W',
              'tameside': '01Y'}
+
+org_codes_sql = {'salford': '01G00',
+             'manchester': '14L00',
+             'bolton': '00T00',
+             'trafford': '02A00',
+             'bury': '00V00',
+             'oldham': '00Y00',
+             'wigan': '02H00',
+             'middleton': '01D00',
+             'stockport': '01W00',
+             'tameside': '01Y00'}
+
 ons_code = {
     'salford': 'E08000001',
     'manchester': 'E08000002',
@@ -40,3 +52,11 @@ ccg_diagnoses2017 = "https://files.digital.nhs.uk/publication/f/t/dem-diag-ind-n
 summary_diagnoses = "https://files.digital.nhs.uk/DE/D6B3AE/dem-diag-sum-Jan-2021.xlsx"
 ethnicity_diagnoses = "https://files.digital.nhs.uk/E2/4A3227/rec-dem-ccg-Jan-2021-csv.csv"
 ap = "https://files.digital.nhs.uk/D4/9D8525/dem-diag-anti-psy-Jan-2021-csv.zip"
+
+
+drug_codes = {
+    "Donepezil" : '0411000D0',
+    "Memantine" : '0411000G0',
+    "Rivastigamine" : '0411000E0',
+    "Galantamine" : '0411000F0'
+}
