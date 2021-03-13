@@ -33,7 +33,7 @@ def clean_function(apdata, level="practice"):
     apdata_demreg = apdata_demreg.drop(columns='Measure')
     apdata = pd.merge(apdata_ap, apdata_demreg, how="inner")
     apdata = apdata.groupby(['ACH_DATE', 'CCG_NAME'], as_index=False).aggregate({'AP':['sum'], 'DEMREG':['sum']})
-    apdata.columns = apdata.columns.get_level_values(0)
+e
     apdata['Perc'] = perc(apdata['AP'], apdata['DEMREG'])
     return apdata
 

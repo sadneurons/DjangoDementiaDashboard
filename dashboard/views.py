@@ -18,10 +18,10 @@ def section_graphs(request, topic):
     return render(request, 'dashboard/graph.html',
                   {'graphs': graphs})
 
-# def text_sections(request, topic):
-#     # query the database to return all project objects
-#     text = Text.objects.filter(topic__iexact=topic)
-#     return render(request, 'dashboard/graph.html',
-#                   {'graphs': graphs})
+def text_sections(request, topic):
+    # query the database to return all project objects
+    text = Text.objects.filter(topic__iexact=topic)
+    return render(request, 'dashboard/graph.html',
+                  {'graphs': graphs})
 
 

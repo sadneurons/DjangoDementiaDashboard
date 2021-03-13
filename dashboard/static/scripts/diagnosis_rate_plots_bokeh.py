@@ -1,8 +1,3 @@
-import bokeh.palettes
-import pandas as pd
-from GMsourcelist import *
-from bokeh.io import output_file
-from bokeh.plotting import figure, show
 
 
 
@@ -29,7 +24,7 @@ estimates = manc_data[manc_data['MEASURE'].str.contains('ESTIMATE')]
 diagnosis_rates = diagnosis_rates.pivot(index=["NAME",
                                                "ACH_DATE"],
                                         columns="MEASURE",
-                                        values="VALUE").reset_index().rename_axis(None, axis=1)
+                                        values="VALUE").
 diagnosis_rates.columns = ['CCG', 'DATE', 'RATE', 'LL', 'UL']
 diagnosis_rates.CCG = [ccg[4:-4] for ccg in diagnosis_rates.CCG]
 diagnosis_rates.to_csv("./diagnosis_rates.csv", index=False)

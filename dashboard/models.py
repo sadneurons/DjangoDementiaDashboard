@@ -12,7 +12,8 @@ class Graph(models.Model):
     download_data_link = models.URLField()
     topic = models.CharField(max_length=20, default="topic")
 
-# class Text(models.Model):
-#     title = models.CharField(max_length=100)
-#     detail = models.TextField(max_length=10000)
+class Pages(models.Model):
+    title = models.CharField(max_length=100)
+    detail = models.TextField(max_length=10000)
+    date = models.DateField()
 

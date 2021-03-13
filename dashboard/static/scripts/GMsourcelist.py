@@ -22,7 +22,17 @@ org_codes_sql = {'salford': '01G00',
              'wigan': '02H00',
              'middleton': '01D00',
              'stockport': '01W00',
-             'tameside': '01Y00'}
+             'tameside': '01Y00',
+             'north manchester': '01M00',# pre-2017!
+            'south manchester': '01N00',# pre-2017!
+            'central manchester': '00W00'# pre-2017!
+}
+
+pre_2017_codes = {
+             'north manchester': '01M00',# pre-2017!
+            'south manchester': '01N00',# pre-2017!
+            'central manchester': '00W00'# pre-2017!
+}
 
 ons_code = {
     'salford': 'E08000001',
