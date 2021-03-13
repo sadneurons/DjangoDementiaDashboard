@@ -20,7 +20,7 @@ def queryLocalityDrugTime(bnfcodes, pcocodes, timecode):
     where_statement_2 = "%20OR%20PCO_CODE=".join(org_codes)
 
     timecode = f"`EPD_{timecode}`"
-    #print(timecode)
+    print(timecode)
     sql = f"SELECT PCO_NAME, PRACTICE_NAME, YEAR_MONTH, " \
           f"BNF_DESCRIPTION, CHEMICAL_SUBSTANCE_BNF_DESCR, TOTAL_QUANTITY " \
           f"from {timecode} WHERE (BNF_CHEMICAL_SUBSTANCE={where_statement_1}) AND (PCO_CODE={where_statement_2})"

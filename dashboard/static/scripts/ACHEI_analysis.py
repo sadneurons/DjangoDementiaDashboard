@@ -1,10 +1,16 @@
-from bokeh.palettes import Category10_10
+from bokeh.palettes import Category20_20
 import pandas as pd
 from bokeh.io import output_notebook, output_file
 from bokeh.plotting import figure, show
 
 
 drugs = pd.read_csv('GM_antidementia_drugs.csv')
+drugs2 = pd.read_csv('pre_2017_manc_df.csv')
+
+drugs2.PCO_NAME = [" ".join(CCG.split(" ")[1:]) for CCG in drugs2.PCO_NAME]
+
+drugs = pd.concat([drugs, drugs2])
+
 drugs.columns = ['UNNAMED','TOTAL', 'PRACTICE', 'CCG', 'DRUGNAME',
                  'YEARMONTH', 'DRUGFORM']
 drugsccg = drugs.groupby(['CCG', 'DRUGNAME', 'YEARMONTH'], as_index=False).aggregate({'TOTAL': ['sum']})
@@ -34,7 +40,7 @@ fig = figure(#text_align="center",
              x_axis_type='datetime',
              x_axis_location='below',
              #x_range=('2018-01-01', '2018-06-30'),
-             y_axis_label='Diagnosis rates (% estimated)',
+             y_axis_label='Prescribed items',
              y_axis_type='linear',
              y_axis_location='left',
              y_range=(60, 15000),
@@ -48,7 +54,7 @@ fig = figure(#text_align="center",
 # Remove the gridlines from the figure() object
 fig.grid.grid_line_color = '#FFFFFF'
 
-colorlist=Category10_10
+colorlist=Category20_20
 rivastigamine = drugsccg[drugsccg.DRUGNAME=="Rivastigmine"]
 ccglist = list(set(rivastigamine.CCG))
 
@@ -85,7 +91,7 @@ fig = figure(#text_align="center",
              x_axis_type='datetime',
              x_axis_location='below',
              #x_range=('2018-01-01', '2018-06-30'),
-             y_axis_label='Diagnosis rates (% estimated)',
+             y_axis_label='Prescribed items',
              y_axis_type='linear',
              y_axis_location='left',
              y_range=(6000, 30000),
@@ -99,7 +105,7 @@ fig = figure(#text_align="center",
 # Remove the gridlines from the figure() object
 fig.grid.grid_line_color = '#FFFFFF'
 
-colorlist=Category10_10
+colorlist=Category20_20
 donepezil = drugsccg[drugsccg.DRUGNAME=="Donepezil"]
 ccglist = list(set(donepezil.CCG))
 
@@ -140,7 +146,7 @@ fig = figure(#text_align="center",
              x_axis_type='datetime',
              x_axis_location='below',
              #x_range=('2018-01-01', '2018-06-30'),
-             y_axis_label='Memantine prescription ',
+             y_axis_label='Prescribed items',
              y_axis_type='linear',
              y_axis_location='left',
              y_range=(0, 42000),
@@ -154,7 +160,7 @@ fig = figure(#text_align="center",
 # Remove the gridlines from the figure() object
 fig.grid.grid_line_color = '#FFFFFF'
 
-colorlist=Category10_10
+colorlist=Category20_20
 memantine = drugsccg[drugsccg.DRUGNAME=="Memantine"]
 ccglist = list(set(donepezil.CCG))
 
@@ -194,7 +200,7 @@ fig = figure(#text_align="center",
              x_axis_type='datetime',
              x_axis_location='below',
              #x_range=('2018-01-01', '2018-06-30'),
-             y_axis_label='Diagnosis rates (% estimated)',
+             y_axis_label='Prescribed items',
              y_axis_type='linear',
              y_axis_location='left',
              y_range=(0, 10000),
@@ -208,7 +214,7 @@ fig = figure(#text_align="center",
 # Remove the gridlines from the figure() object
 fig.grid.grid_line_color = '#FFFFFF'
 
-colorlist=Category10_10
+colorlist=Category20_20
 galantamine = drugsccg[drugsccg.DRUGNAME=="Galantamine"]
 ccglist = list(set(donepezil.CCG))
 
