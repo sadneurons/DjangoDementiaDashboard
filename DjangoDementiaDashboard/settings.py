@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,12 @@ SECRET_KEY = '9*3a&8eu3h*s8h2&gw(e7v8s^utxw9$)xd*t0f02q!nxb$hic%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['gmdementiadash.ew.r.appspot.com',
+                 'gmdementiadash.co.uk',
+                 'www.gmdementiadash.co.uk',
+                 'dementiadash.uk',
+                 'www.dementiadash.uk',
+                 '127.0.0.1',]
 
 
 # Application definition
@@ -79,11 +85,18 @@ WSGI_APPLICATION = 'DjangoDementiaDashboard.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'sadneurons',
+        'PASSWORD': 'ConsolingDevotion2021!',
+        'PORT': '5432',
     }
 }
-
+DATABASES['default']['HOST'] = '/cloudsql/gmdementiadash:europe-west2:gmdementiadash-instance'
+if os.getenv('GAE_INSTANCE'):
+    pass
+else:
+    DATABASES['default']['HOST'] = '127.0.0.1'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -120,5 +133,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-STATIC_URL = '/static/'
+STATIC_URL = 'https://storage.googleapis.com/gmdementiadash/static/'
+
