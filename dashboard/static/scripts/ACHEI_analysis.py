@@ -11,6 +11,8 @@ drugs2.PCO_NAME = [" ".join(CCG.split(" ")[1:]) for CCG in drugs2.PCO_NAME]
 
 drugs = pd.concat([drugs, drugs2])
 
+
+
 drugs.columns = ['UNNAMED','TOTAL', 'PRACTICE', 'CCG', 'DRUGNAME',
                  'YEARMONTH', 'DRUGFORM']
 drugsccg = drugs.groupby(['CCG', 'DRUGNAME', 'YEARMONTH'], as_index=False).aggregate({'TOTAL': ['sum']})
@@ -22,8 +24,10 @@ drugsccg.YEARMONTH = [str(YEARMONTH)[-2:] +"-"+ str(YEARMONTH)[:-2]  for YEARMON
 drugsccg.YEARMONTH = pd.to_datetime(drugsccg.YEARMONTH)
 print(list(set(drugsccg.DRUGNAME)))
 
+drugsccg.to_csv("../csv/GM_Antidementia_drug_prescribing_CCG.csv",
+                index=False)
 
-output_file('bokeh_rivastigmine.html',
+output_file('../bokehplots/bokeh_rivastigmine.html',
             title="Rivastigmine prescribing in GM")
 #fig = figure()
 
@@ -72,10 +76,10 @@ fig.legend.glyph_width = 10
 fig.legend.glyph_height = 25
 fig.legend.orientation = "horizontal"
 fig.title.align="center"
-show(fig)
+fig
 
 
-output_file('bokeh_Donepezil.html',
+output_file('../bokehplots/bokeh_Donepezil.html',
             title="Donepezil prescribing in GM")
 
 fig = figure(#text_align="center",
@@ -123,15 +127,15 @@ fig.legend.glyph_width = 10
 fig.legend.glyph_height = 25
 fig.legend.orientation = "horizontal"
 fig.title.align="center"
-show(fig)
+save(fig)
 
 
 
 
 
 
-output_file('bokeh_Memantine.html',
-            title="Mementine prescribing in GM")
+output_file('../bokehplots/bokeh_Memantine.html',
+            title="Memantine prescribing in GM")
 
 fig = figure(#text_align="center",
 
@@ -178,13 +182,13 @@ fig.legend.glyph_width = 10
 fig.legend.glyph_height = 25
 fig.legend.orientation = "horizontal"
 fig.title.align="center"
-show(fig)
+save(fig)
 
 
 
 
 
-output_file('bokeh-Galantamine.html',
+output_file('../bokehplots/bokeh-Galantamine.html',
             title="Galantamine prescribing in GM")
 
 fig = figure(#text_align="center",
@@ -232,4 +236,4 @@ fig.legend.glyph_width = 10
 fig.legend.glyph_height = 25
 fig.legend.orientation = "horizontal"
 fig.title.align="center"
-show(fig)
+save(fig)

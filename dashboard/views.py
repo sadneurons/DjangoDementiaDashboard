@@ -7,14 +7,14 @@ from dashboard.models import Graph
 
 def all_graphs(request):
     # query the database to return all project objects
-    graphs = Graph.objects.all()
+    graphs = Graph.objects.all().order_by('id')
     return render(request, 'dashboard/graph.html',
                   {'graphs': graphs})
 
 
 def section_graphs(request, topic):
     # query the database to return all project objects
-    graphs = Graph.objects.filter(topic__iexact=topic)
+    graphs = Graph.objects.filter(topic__iexact=topic).order_by('id')
     return render(request, 'dashboard/graph.html',
                   {'graphs': graphs})
 

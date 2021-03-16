@@ -5,13 +5,13 @@ from pages.models import Page
 
 def Background(request):
     # query the database to return all project objects
-    pages = Page.objects.filter(topic__iexact='background')
+    pages = Page.objects.filter(topic__iexact='background').order_by('id')
     return render(request, 'pages/page.html',
                   {'pages': pages})
 
 def Pages(request, topic):
         # query the database to return all project objects
-        pages = Page.objects.filter(topic__iexact=topic)
+        pages = Page.objects.filter(topic__iexact=topic).order_by('id')
         return render(request, 'pages/page.html',
                       {'pages': pages})
 

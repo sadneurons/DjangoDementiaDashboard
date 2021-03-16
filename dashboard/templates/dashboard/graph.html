@@ -1,38 +1,40 @@
-
 {% extends "dashboard/base.html" %}
 
 {% block content %}
-{#Produce a dynamic graph with attribution details#}
-
-    {% for graph in graphs %}
-        <div class="graph_title">
-            <h1 class="display-1 text-center">{{ graph.title }}</h1>
-        </div>
-
-        <figure class="figure d-block">{{ graph.bokeh_html|safe }}
-            <figcaption class="figure-caption text-left">
-                <h4 class="lead">{{ graph.caption }}
-            </figcaption>
-        </figure>
-
-        <div class="data_sources">
-            <ul class="list-unstyled">
-                <li>Data last known update: {{ graph.updated }}</li>
-                <li>Data source: {{ graph.source }}</li>
-                <li>Data source url: <a
-                        href="{{ graph.source_url }}">{{ graph.source_url }}</a></li>
-                <li>Download data used to generate this plot: <a
-                        href="{{ graph.download_data_link }}">{{ graph.download_data_link }}</a></li>
+    {#Produce a dynamic graph with attribution details#}
+    <div class="slide-wrap">
+    <ul class="pagination justify-content-center pagination-sm">
+        {% for graph in graphs %}
+            <li class="page-item"><a href="#slide-{{ forloop.counter }}">{{ graph.title }}</a></li>
+            {% endfor %}
             </ul>
-        </div>
-    {% endfor %}
 
-</div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
+    <div class="slider">
+        {% for graph in graphs %}
+            <div class="slide" id="slide-{{ forloop.counter }}">
+                <div class="graph_title">
+                    <h1 class="display-1 text-center">{{ graph.title }}</h1>
+                </div>
+
+                <figure class="figure d-block">{{ graph.bokeh_html|safe }}
+                    <figcaption class="figure-caption text-left">
+                        <h4 class="lead">{{ graph.caption }}
+                    </figcaption>
+                </figure>
+
+                <div class="data_sources">
+                    <ul class="list-unstyled">
+                        <li>Data last known update: {{ graph.updated }}</li>
+                        <li>Data source: {{ graph.source }}</li>
+                        <li>Data source url: <a
+                                href="{{ graph.source_url }}">{{ graph.source_url }}</a></li>
+                        <li>Download data used to generate this plot: <a
+                                href="{{ graph.download_data_link }}">{{ graph.download_data_link }}</a></li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    </div>
 {% endblock %}
 
