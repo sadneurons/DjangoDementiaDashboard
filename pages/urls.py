@@ -20,6 +20,6 @@ from pages import views
 # app_name = 'dashboard'
 
 urlpatterns = [
-    path('', views.background),
-    path("/background", views.background),
+    path('', views.Background),
+    path("<str:topic>", views.Pages),
 ]

@@ -2,9 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dashboard</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {#    #Bootstrap!#}
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="icon" type="image/svg+xml" href="https://storage.googleapis.com/gmdementiadash/static/img/England_Greater_Manchester.svg">
+    <!-- Latest compiled and minified JavaScript -->
+
+    <style>
+        .jumbotron {
+            margin-bottom: 0;
+            padding-bottom: 1%;
+            padding-top: 1%;
+            color: white;
+            background-position: right;
+            background-repeat: no-repeat;
+            background-image: url("https://storage.googleapis.com/gmdementiadash/static/img/England_Greater_Manchester.svg");
+            background-size: cover;
+        }
+
+        .pagination {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            padding-top: 0;
+        }
+
+        .data_sources{
+            border-style: solid;
+            border-width: 0.5px;
+            border: black;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <div class="jumbotron text-center jumbotron-fluid">
+        <h1>GM Dementia Dashboard</h1>
+        <p class="lead">Data & insights about dementia care in Greater Manchester</p>
+    </div>
+</div>
+{# put in a navbar#}
+<div class="container justify-content-center paginated">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center pagination-lg">
+            <li class="page-item"><a class="page-link" href="/pages/background">Background</a></li>
+            <li class="page-item"><a class="page-link" href="/pages/technologies">Technologies</a></li>
+            <li class="page-item"><a class="page-link" href="/dashboard/diagnosis">Diagnosis</a></li>
+            <li class="page-item"><a class="page-link" href="/dashboard/prescribing">Prescribing</a></li>
+            <li class="page-item"><a class="page-link" href="/dashboard/care">Care</a></li>
+            <li class="page-item"><a class="page-link" href="/dashboard/dols">DOLS</a></li>
+            <li class="page-item"><a class="page-link" href="/dashboard/dying">Death and Dying</a></li>
+            <li class="page-item"><a class="page-link" href="/dashboard/environment">Environment</a></li>
+            <li class="page-item"><a class="page-link" href="/dashboard/historical">Historical data</a></li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
 
 </body>
 </html>
